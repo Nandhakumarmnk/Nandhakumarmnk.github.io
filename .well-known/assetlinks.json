@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.github.nandhakumarmnk.epalace",
-      "sha256_cert_fingerprints": ["REPLACE_WITH_SIGNING_SHA256"]
+      "sha256_cert_fingerprints": ["9A:C4:16:D2:44:5C:EF:3A:E4:EC:40:DA:DE:CE:C6:DA:32:98:96:A2:D6:EE:B6:2C:F9:61:E7:06:56:0C:7A:1E"]
     }
   }
 ]
