@@ -1,7 +1,7 @@
 {
-  "name": "E-Palace Field Order",
-  "short_name": "E-Palace Order",
-  "description": "Offline order entry for E-Palace field staff. Works without a connection and syncs to the cloud.",
+  "name": "E-Palace",
+  "short_name": "E-Palace",
+  "description": "E-Palace order management — items, customers, and offline field order entry.",
   "start_url": "/epalace/",
   "scope": "/epalace/",
   "display": "standalone",

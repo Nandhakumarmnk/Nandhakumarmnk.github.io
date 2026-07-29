@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>New Offline Order · E-Palace</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#4f46e5" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <style>
+        :root { --brand: #4f46e5; }
+        body { background: #0f172a; color: #e2e8f0; }
+        .topbar { background: var(--brand); color: #fff; }
+        .card { background: #1e293b; border: 1px solid #334155; }
+        .card-header { background: #172033; border-bottom: 1px solid #334155; font-weight: 600; }
+        label { font-size: .85rem; color: #94a3b8; margin-bottom: .15rem; }
+        .form-control, .form-select { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+        .form-control:focus, .form-select:focus { background: #0f172a; color: #fff; border-color: var(--brand); box-shadow: 0 0 0 .2rem rgba(79,70,229,.25); }
+        .table { color: #e2e8f0; }
+        .table thead th { color: #94a3b8; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+        .btn-brand { background: var(--brand); border-color: var(--brand); color: #fff; }
+        .btn-brand:hover { background: #4338ca; color: #fff; }
+        .totals b { color: #fff; }
+        .muted { color: #94a3b8; }
+        #toast { position: sticky; top: .5rem; z-index: 20; }
+    </style>
+</head>
+<body>
+    <div class="topbar py-2 px-3 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+            <strong>E-Palace</strong><span class="opacity-75">· New Offline Order</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span class="small">Items cached: <span id="item-count">0</span></span>
+            <span class="small">Queued: <span id="queue-count" class="badge bg-warning text-dark">0</span></span>
+            <span id="conn-status" class="badge bg-secondary">…</span>
+        </div>
+    </div>
+
+    <div class="container-fluid py-3" style="max-width: 900px;">
+        <div id="toast" class="alert" style="display:none;"></div>
+
+        <div id="cfg-status" class="alert alert-warning py-2 small" style="display:none;">
+            <strong>Firebase not configured.</strong> Orders are saved &amp; queued locally, but cloud push and item refresh are off until
+            <code>firebase-config.js</code> is filled in.
+        </div>
+
+        <div class="d-flex gap-2 mb-3 flex-wrap">
+            <button type="button" id="btn-refresh" class="btn btn-sm btn-outline-light">Refresh items from cloud</button>
+            <button type="button" id="btn-push" class="btn btn-sm btn-brand">Push queued orders to cloud</button>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">Customer</div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-md-6"><label>Customer Name *</label><input id="f-name" class="form-control form-control-sm" /></div>
+                    <div class="col-md-6"><label>Phone *</label><input id="f-phone" class="form-control form-control-sm" inputmode="tel" /></div>
+                    <div class="col-md-8"><label>Address</label><input id="f-address" class="form-control form-control-sm" /></div>
+                    <div class="col-md-4"><label>Email</label><input id="f-email" class="form-control form-control-sm" inputmode="email" /></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">Items</div>
+            <div class="card-body">
+                <div class="row g-2 align-items-end mb-2">
+                    <div class="col-7"><label>Item</label><select id="item-select" class="form-select form-select-sm"></select></div>
+                    <div class="col-3"><label>Qty</label><input id="line-qty" type="number" min="1" value="1" class="form-control form-control-sm" /></div>
+                    <div class="col-2"><button type="button" id="btn-add-line" class="btn btn-sm btn-brand w-100">Add</button></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead><tr><th>Item</th><th class="text-end">Qty</th><th class="text-end">Rate</th><th class="text-end">Total</th><th></th></tr></thead>
+                        <tbody id="lines-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">Payment &amp; Charges</div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-md-4"><label>Payment Mode</label><select id="f-paymode" class="form-select form-select-sm"></select></div>
+                    <div class="col-md-2 col-6"><label>Discount</label><input id="f-discount" type="number" value="0" class="form-control form-control-sm" /></div>
+                    <div class="col-md-2 col-6"><label>Tax %</label><input id="f-tax" type="number" value="0" class="form-control form-control-sm" /></div>
+                    <div class="col-md-2 col-6"><label>Delivery</label><input id="f-delivery" type="number" value="0" class="form-control form-control-sm" /></div>
+                    <div class="col-md-2 col-6"><label>Amount Paid</label><input id="f-paid" type="number" value="0" class="form-control form-control-sm" /></div>
+                    <div class="col-12"><label>Notes</label><input id="f-notes" class="form-control form-control-sm" /></div>
+                </div>
+                <hr class="border-secondary" />
+                <div class="row totals small">
+                    <div class="col-6 col-md-3">Selling: <b id="t-selling">₹0.00</b></div>
+                    <div class="col-6 col-md-3">Tax: <b id="t-tax">₹0.00</b></div>
+                    <div class="col-6 col-md-3">Grand Total: <b id="t-grand">₹0.00</b></div>
+                    <div class="col-6 col-md-3">Balance: <b id="t-balance">₹0.00</b></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid mb-4">
+            <button type="button" id="btn-save" class="btn btn-brand btn-lg">Save order offline</button>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">Queued orders (waiting to sync)</div>
+            <div class="table-responsive">
+                <table class="table table-sm mb-0">
+                    <thead><tr><th>Customer</th><th>Items</th><th class="text-end">Total</th><th>Created</th></tr></thead>
+                    <tbody id="queue-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="text-center muted small mb-5">
+            Orders are stored on this device and pushed to the cloud when online.
+            An admin then imports them via the E-Palace web app's <strong>Offline Sync ▸ Sync Now</strong> button.
+        </p>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="firebase-rest.js"></script>
+    <script src="offline-db.js"></script>
+    <script src="offline-order.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function () { }); }
+    </script>
+</body>
+</html>
