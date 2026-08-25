@@ -1,11 +1,1376 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=epalace/" />
-    <title>E-Palace</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nandhakumar M — Senior .NET Full-Stack Developer | React.js | ASP.NET Core | C#</title>
+<meta name="description" content="Senior .NET Full-Stack Developer and Technical Lead with 5 years of experience building enterprise web applications end to end on .NET 8 / ASP.NET Core, C#, React.js, and SQL Server — React front ends integrated with secured RESTful .NET APIs across supply chain, procurement, and vendor platforms.">
+<meta name="author" content="Nandhakumar M">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nandhakumar M — Senior .NET Full-Stack Developer | React.js | ASP.NET Core | C#">
+<meta property="og:description" content="5 years building enterprise web applications end to end — React.js and TypeScript front ends integrated with JWT-secured RESTful .NET APIs on ASP.NET Core, C#, and SQL Server. 500+ security issues resolved. SAP Business One integration from scratch.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a1628'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='Segoe UI,Arial' font-weight='700' fill='%2338bdf8'>N</text></svg>">
+
+<style>
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
+:root[data-theme="dark"]{
+  --bg:            #0a1120;
+  --bg-alt:        #0e1729;
+  --surface:       #121d33;
+  --surface-2:     #17243d;
+  --border:        #24344f;
+  --border-soft:   #1b2942;
+  --text:          #e8eef8;
+  --text-muted:    #93a4bf;
+  --text-dim:      #6b7f9e;
+  --accent:        #38bdf8;
+  --accent-2:      #818cf8;
+  --accent-soft:   rgba(56,189,248,.12);
+  --shadow:        0 18px 44px rgba(0,0,0,.42);
+  --nav-bg:        rgba(10,17,32,.82);
+}
+:root[data-theme="light"]{
+  --bg:            #ffffff;
+  --bg-alt:        #f4f7fb;
+  --surface:       #ffffff;
+  --surface-2:     #f7fafd;
+  --border:        #dfe7f1;
+  --border-soft:   #e9eff7;
+  --text:          #0f1c30;
+  --text-muted:    #4a5b74;
+  --text-dim:      #6d7f97;
+  --accent:        #0b6fb3;
+  --accent-2:      #4f52c9;
+  --accent-soft:   rgba(11,111,179,.09);
+  --shadow:        0 14px 34px rgba(17,42,74,.10);
+  --nav-bg:        rgba(255,255,255,.86);
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ scroll-behavior:smooth; scroll-padding-top:76px; }
+
+body{
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.68;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:background .3s ease, color .3s ease;
+}
+
+::selection{ background:var(--accent); color:#04101f; }
+
+a{ color:inherit; text-decoration:none; }
+
+.wrap{ width:100%; max-width:1120px; margin:0 auto; padding:0 24px; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease, background .3s ease;
+}
+nav.scrolled{ border-bottom-color:var(--border); }
+
+.nav-inner{
+  max-width:1120px; margin:0 auto; padding:0 24px;
+  height:66px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+
+.brand{ display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px; }
+.brand-mark{
+  width:34px; height:34px; flex:0 0 34px; border-radius:9px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#04101f; display:grid; place-items:center; font-size:16px; font-weight:800;
+}
+.brand-text{ font-size:15.5px; }
+.brand-text span{ color:var(--text-dim); font-weight:500; }
+
+.nav-links{ display:flex; align-items:center; gap:4px; list-style:none; }
+.nav-links a{
+  display:block; padding:8px 13px; border-radius:8px;
+  font-size:14.5px; font-weight:500; color:var(--text-muted);
+  transition:color .18s ease, background .18s ease;
+}
+.nav-links a:hover{ color:var(--text); background:var(--surface-2); }
+.nav-links a.active{ color:var(--accent); background:var(--accent-soft); }
+
+.nav-actions{ display:flex; align-items:center; gap:9px; }
+
+.icon-btn{
+  width:38px; height:38px; display:grid; place-items:center; cursor:pointer;
+  border:1px solid var(--border); border-radius:9px;
+  background:var(--surface); color:var(--text-muted);
+  transition:all .18s ease;
+}
+.icon-btn:hover{ color:var(--accent); border-color:var(--accent); }
+.icon-btn svg{ width:18px; height:18px; }
+:root[data-theme="dark"] .icon-sun{ display:block; }
+:root[data-theme="dark"] .icon-moon{ display:none; }
+:root[data-theme="light"] .icon-sun{ display:none; }
+:root[data-theme="light"] .icon-moon{ display:block; }
+
+#menuBtn{ display:none; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; gap:9px; cursor:pointer;
+  padding:12px 22px; border-radius:10px;
+  font-size:14.5px; font-weight:600; font-family:inherit;
+  border:1px solid transparent;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn svg{ width:17px; height:17px; }
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#04101f; font-weight:700;
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 26px var(--accent-soft); }
+.btn-ghost{ background:transparent; border-color:var(--border); color:var(--text); }
+.btn-ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+section{ padding:84px 0; }
+.band{ background:var(--bg-alt); border-block:1px solid var(--border-soft); }
+
+.sec-head{ margin-bottom:40px; }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12.5px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase;
+  color:var(--accent); margin-bottom:11px;
+}
+.eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); border-radius:2px; }
+.sec-head h2{ font-size:clamp(26px,4vw,36px); font-weight:700; letter-spacing:-.5px; line-height:1.22; }
+.sec-head p{ color:var(--text-muted); margin-top:9px; max-width:62ch; font-size:15.5px; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#home{
+  position:relative; min-height:100vh;
+  display:flex; align-items:center;
+  padding:120px 0 72px; overflow:hidden;
+}
+.hero-glow{
+  position:absolute; z-index:0; border-radius:50%;
+  filter:blur(90px); opacity:.5; pointer-events:none;
+}
+.glow-a{ width:520px; height:520px; background:var(--accent); top:-160px; right:-140px; opacity:.16; }
+.glow-b{ width:420px; height:420px; background:var(--accent-2); bottom:-170px; left:-130px; opacity:.13; }
+.hero-grid-bg{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:linear-gradient(var(--border-soft) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--border-soft) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:radial-gradient(ellipse 78% 62% at 50% 42%,#000 12%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 78% 62% at 50% 42%,#000 12%,transparent 78%);
+  opacity:.55;
+}
+.hero-inner{ position:relative; z-index:1; }
+
+.badge{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:7px 15px; border-radius:999px;
+  border:1px solid var(--border); background:var(--surface);
+  font-size:13.5px; font-weight:500; color:var(--text-muted);
+  margin-bottom:24px;
+}
+.dot{
+  width:8px; height:8px; border-radius:50%; background:#22c55e;
+  box-shadow:0 0 0 0 rgba(34,197,94,.55); animation:pulse 2.2s infinite;
+}
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 0 rgba(34,197,94,.5); }
+  70%{ box-shadow:0 0 0 9px rgba(34,197,94,0); }
+  100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); }
+}
+
+#home h1{
+  font-size:clamp(38px,7.2vw,68px); font-weight:800;
+  letter-spacing:-1.8px; line-height:1.05; margin-bottom:16px;
+}
+.grad{
+  background:linear-gradient(115deg,var(--accent) 10%,var(--accent-2) 90%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-role{
+  font-size:clamp(17px,2.6vw,23px); font-weight:600;
+  color:var(--text-muted); margin-bottom:20px; letter-spacing:-.2px;
+}
+.hero-role b{ color:var(--text); font-weight:700; }
+.hero-copy{ font-size:16.5px; color:var(--text-muted); max-width:64ch; margin-bottom:32px; }
+.hero-cta{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:56px; }
+
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  padding-top:34px; border-top:1px solid var(--border);
+}
+.stat .n{
+  font-size:clamp(27px,4.4vw,38px); font-weight:800; letter-spacing:-1px;
+  line-height:1.1;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.stat .l{
+  font-size:12.5px; color:var(--text-dim); margin-top:3px;
+  text-transform:uppercase; letter-spacing:.9px; font-weight:600;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{ display:grid; grid-template-columns:1.5fr 1fr; gap:44px; align-items:start; }
+.about-body p{ color:var(--text-muted); margin-bottom:15px; font-size:15.8px; }
+.about-body p:last-child{ margin-bottom:0; }
+.about-body strong{ color:var(--text); font-weight:600; }
+
+.facts{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:14px; padding:8px 22px; box-shadow:var(--shadow);
+}
+.fact{ display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px solid var(--border-soft); }
+.fact:last-child{ border-bottom:0; }
+.fact dt{ color:var(--text-dim); font-size:13.5px; font-weight:600; text-transform:uppercase; letter-spacing:.6px; white-space:nowrap; }
+.fact dd{ font-size:14.5px; font-weight:600; text-align:right; }
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(310px,100%),1fr)); gap:18px; }
+.skill-card{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:14px; padding:24px; position:relative; overflow:hidden;
+  transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.skill-card::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transform:scaleX(0); transform-origin:left; transition:transform .3s ease;
+}
+.skill-card:hover{ transform:translateY(-4px); border-color:var(--accent); box-shadow:var(--shadow); }
+.skill-card:hover::before{ transform:scaleX(1); }
+.skill-head{ display:flex; align-items:center; gap:11px; margin-bottom:15px; }
+.skill-ico{
+  width:36px; height:36px; flex:0 0 36px; border-radius:9px;
+  background:var(--accent-soft); color:var(--accent);
+  display:grid; place-items:center;
+}
+.skill-ico svg{ width:19px; height:19px; }
+.skill-head h3{ font-size:16px; font-weight:700; letter-spacing:-.2px; }
+.tags{ display:flex; flex-wrap:wrap; gap:7px; }
+.tag{
+  padding:5px 11px; border-radius:7px; font-size:12.8px; font-weight:500;
+  background:var(--surface-2); border:1px solid var(--border-soft); color:var(--text-muted);
+  transition:color .16s ease, border-color .16s ease;
+}
+.skill-card:hover .tag{ color:var(--text); border-color:var(--border); }
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+.timeline{ position:relative; padding-left:34px; }
+.timeline::before{
+  content:""; position:absolute; left:8px; top:8px; bottom:8px; width:2px;
+  background:linear-gradient(180deg,var(--accent),var(--accent-2),transparent);
+  border-radius:2px;
+}
+.tl-item{ position:relative; padding-bottom:38px; }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-item::before{
+  content:""; position:absolute; left:-30px; top:7px;
+  width:14px; height:14px; border-radius:50%;
+  background:var(--bg-alt); border:3px solid var(--accent);
+}
+.tl-top{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:10px; }
+.tl-top h3{ font-size:19px; font-weight:700; letter-spacing:-.3px; }
+.tl-date{
+  font-size:12.8px; font-weight:700; color:var(--accent);
+  background:var(--accent-soft); padding:4px 12px; border-radius:999px; white-space:nowrap;
+}
+.tl-org{ color:var(--text-muted); font-size:14.8px; margin:3px 0 13px; }
+.tl-org b{ color:var(--text); font-weight:600; }
+.tl-list{ list-style:none; display:grid; gap:8px; }
+.tl-list li{ position:relative; padding-left:22px; color:var(--text-muted); font-size:15.2px; }
+.tl-list li::before{
+  content:""; position:absolute; left:2px; top:10px;
+  width:6px; height:6px; border-radius:50%; background:var(--accent); opacity:.75;
+}
+.tl-list li b{ color:var(--text); font-weight:600; }
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+/* 2 columns at desktop so a full-width feature card plus an even number of
+   standard cards always fills complete rows (no orphaned empty track). */
+.projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(430px,100%),1fr)); gap:20px; }
+.proj{
+  background:var(--surface); border:1px solid var(--border); border-radius:15px;
+  padding:26px; display:flex; flex-direction:column;
+  transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.proj:hover{ transform:translateY(-5px); border-color:var(--accent); box-shadow:var(--shadow); }
+.proj.feature{ grid-column:1/-1; }
+.proj-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:9px; }
+.proj h3{ font-size:18.5px; font-weight:700; letter-spacing:-.3px; line-height:1.3; }
+.proj-role{
+  font-size:11.5px; font-weight:700; letter-spacing:.7px; text-transform:uppercase;
+  color:var(--accent); background:var(--accent-soft);
+  padding:5px 11px; border-radius:999px; white-space:nowrap;
+}
+.proj-sub{ font-size:13.5px; color:var(--text-dim); margin-bottom:14px; font-weight:500; }
+.proj-list{ list-style:none; display:grid; gap:7px; margin-bottom:18px; }
+.proj-list li{ position:relative; padding-left:20px; font-size:14.8px; color:var(--text-muted); }
+.proj-list li::before{
+  content:""; position:absolute; left:1px; top:9px;
+  width:6px; height:6px; border-radius:2px; background:var(--accent); opacity:.7;
+}
+.proj-list li b{ color:var(--text); font-weight:600; }
+.proj-list li code{
+  font-family:Consolas,"Courier New",monospace; font-size:.9em;
+  background:var(--surface-2); border:1px solid var(--border-soft);
+  border-radius:4px; padding:1px 5px; color:var(--text);
+}
+.proj .tags{ margin-top:auto; padding-top:16px; border-top:1px solid var(--border-soft); }
+
+.proj-links{ display:flex; flex-wrap:wrap; gap:9px; margin-top:13px; }
+.plink{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:7px 13px; border-radius:8px; font-size:12.8px; font-weight:600;
+  border:1px solid var(--border); background:var(--surface-2); color:var(--text-muted);
+  transition:border-color .16s ease, color .16s ease;
+}
+.plink:hover{ border-color:var(--accent); color:var(--accent); }
+.plink svg{ width:14px; height:14px; flex:0 0 14px; }
+.plink.live{ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+.achv{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr)); gap:18px; }
+.achv-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:14px;
+  padding:24px; transition:transform .22s ease, border-color .22s ease;
+}
+.achv-card:hover{ transform:translateY(-4px); border-color:var(--accent); }
+.achv-ico{
+  width:42px; height:42px; border-radius:11px; margin-bottom:14px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#04101f; display:grid; place-items:center;
+}
+.achv-ico svg{ width:21px; height:21px; }
+.achv-card h3{ font-size:16.5px; font-weight:700; margin-bottom:7px; letter-spacing:-.2px; }
+.achv-card p{ font-size:14.6px; color:var(--text-muted); }
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+.edu{
+  background:var(--surface); border:1px solid var(--border); border-radius:14px;
+  padding:28px; display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;
+}
+.edu-ico{
+  width:52px; height:52px; flex:0 0 52px; border-radius:13px;
+  background:var(--accent-soft); color:var(--accent); display:grid; place-items:center;
+}
+.edu-ico svg{ width:26px; height:26px; }
+.edu-body{ flex:1 1 300px; }
+.edu-body h3{ font-size:18px; font-weight:700; letter-spacing:-.3px; }
+.edu-body .inst{ color:var(--text-muted); font-size:15px; margin:3px 0 9px; }
+.edu-meta{ display:flex; flex-wrap:wrap; gap:9px; }
+.pill{
+  font-size:12.8px; font-weight:600; padding:5px 12px; border-radius:999px;
+  background:var(--surface-2); border:1px solid var(--border-soft); color:var(--text-muted);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-card{
+  position:relative; overflow:hidden; text-align:center;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:20px; padding:56px 32px; box-shadow:var(--shadow);
+}
+.contact-card::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent));
+}
+.contact-card h2{ font-size:clamp(25px,4vw,34px); font-weight:700; letter-spacing:-.6px; margin-bottom:12px; }
+.contact-card > p{ color:var(--text-muted); max-width:52ch; margin:0 auto 30px; font-size:16px; }
+.contact-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:30px; }
+.clink{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:13px 20px; border-radius:11px;
+  border:1px solid var(--border); background:var(--surface-2);
+  font-size:14.8px; font-weight:600;
+  transition:all .18s ease;
+}
+.clink:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-3px); }
+.clink svg{ width:18px; height:18px; flex:0 0 18px; }
+.avail{
+  display:inline-flex; align-items:center; gap:9px;
+  font-size:14px; color:var(--text-muted);
+  border-top:1px solid var(--border-soft); padding-top:24px;
+}
+
+footer{
+  border-top:1px solid var(--border); padding:26px 0;
+  text-align:center; color:var(--text-dim); font-size:13.8px;
+}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  *{ animation:none !important; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .about{ grid-template-columns:1fr; gap:30px; }
+  .stats{ grid-template-columns:repeat(2,1fr); gap:22px; }
+}
+@media (max-width:760px){
+  #menuBtn{ display:grid; }
+  .nav-links{
+    position:fixed; inset:66px 0 auto 0; flex-direction:column; gap:0; align-items:stretch;
+    background:var(--bg); border-bottom:1px solid var(--border);
+    padding:10px 18px 18px;
+    transform:translateY(-130%); transition:transform .3s ease; z-index:99;
+  }
+  .nav-links.open{ transform:translateY(0); }
+  .nav-links a{ padding:13px 12px; font-size:15.5px; }
+  section{ padding:66px 0; }
+  #home{ padding:104px 0 60px; min-height:auto; }
+  .brand-text span{ display:none; }
+  .hero-cta .btn{ flex:1 1 100%; justify-content:center; }
+  .proj, .skill-card, .achv-card, .contact-card{ padding:22px; }
+  .contact-card{ padding:40px 22px; }
+  .fact{ flex-direction:column; gap:2px; }
+  .fact dd{ text-align:left; }
+}
+@media (max-width:420px){
+  .stats{ grid-template-columns:1fr 1fr; }
+  .tl-top h3{ font-size:17px; }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print{
+  nav,.hero-cta,.hero-glow,.hero-grid-bg,.contact-links,footer{ display:none !important; }
+  body{ background:#fff; color:#000; }
+  section{ padding:16px 0; break-inside:avoid; }
+  .reveal{ opacity:1 !important; transform:none !important; }
+}
+</style>
 </head>
 <body>
-    <p>Redirecting to the <a href="epalace/">E-Palace Field Order app</a>…</p>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">N</span>
+      <span class="brand-text">Nandhakumar M <span>· .NET + React</span></span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#freelance">Freelance</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn" id="menuBtn" aria-label="Toggle navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow glow-a"></div>
+  <div class="hero-glow glow-b"></div>
+
+  <div class="wrap hero-inner">
+    <div class="badge"><span class="dot"></span> Available for senior &amp; lead .NET full-stack roles</div>
+
+    <h1>Nandhakumar M</h1>
+    <p class="hero-role"><b>Senior .NET Full-Stack Developer</b> &nbsp;|&nbsp; <span class="grad">React.js · ASP.NET Core · Technical Lead</span></p>
+
+    <p class="hero-copy">
+      I build enterprise web applications end to end — <b>React.js</b> front ends wired to secured
+      <b>RESTful .NET APIs</b> on ASP.NET Core, C#, and SQL Server. Supply chain, procurement, and vendor
+      platforms that run production every day, integrate with SAP, and cannot afford downtime.
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M2 17l10 4 10-4M2 12l10 4 10-4"/></svg>
+        View Projects
+      </a>
+      <a class="btn btn-ghost" href="Nandhakumar_M_Resume.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
+        Download Résumé
+      </a>
+      <a class="btn btn-ghost" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        Get in Touch
+      </a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n" data-count="5" data-suffix="">0</div><div class="l">Years Experience</div></div>
+      <div class="stat"><div class="n" data-count="500" data-suffix="+">0</div><div class="l">Security Issues Fixed</div></div>
+      <div class="stat"><div class="n" data-count="8" data-suffix="">0</div><div class="l">Projects Shipped</div></div>
+      <div class="stat"><div class="n" data-count="0" data-suffix="">0</div><div class="l">Downtime Incidents</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">About</div>
+      <h2>Engineering that holds up in production</h2>
+    </div>
+
+    <div class="about">
+      <div class="about-body reveal">
+        <p>
+          I'm a <strong>Senior .NET Full-Stack Developer and Technical Lead</strong> with 5 years of experience
+          at Spark IT Tech, Tiruppur, building enterprise web applications end to end — <strong>React.js and
+          TypeScript</strong> on the front, <strong>.NET 8 / ASP.NET Core and C#</strong> behind it, and
+          <strong>SQL Server</strong> underneath.
+        </p>
+        <p>
+          On the Vendor Portal I built the vendor-facing UI in <strong>React.js with TypeScript</strong> — a
+          reusable component set of forms, grids, modals, and validation shared across registration, onboarding,
+          and approval screens — and <strong>integrated it with RESTful .NET APIs</strong> secured by JWT and
+          role-based routing, so vendors, buyers, and approvers each see only their permitted screens. On the
+          established MVC modules I still ship server-rendered screens with JavaScript, jQuery, AJAX, and Bootstrap.
+        </p>
+        <p>
+          My work sits where correctness matters most. I led a <strong>four-phase security remediation
+          programme</strong> that resolved <strong>500+ security issues/findings</strong> — XSS, SQL Injection, CSRF,
+          and unsafe file upload paths — across a system that could not be taken offline. I built the
+          <strong>SAP Business One</strong> synchronisation services from scratch, replacing manual cross-team
+          reconciliation with near real-time data exchange.
+        </p>
+        <p>
+          As <strong>Technical Lead</strong> I own task breakdown, estimation, design discussions, and code reviews,
+          and mentor developers on .NET, React, and secure coding practice. I tune T-SQL workloads down to
+          sub-second under peak load and set the standards the team reviews against.
+        </p>
+        <p>
+          I also own releases end to end: <strong>IIS site hosting</strong> and server configuration, SSL binding,
+          <strong>EF Core migrations</strong> with matching rollback scripts, and production-to-UAT refreshes using
+          <strong>data masking and validation</strong> of sensitive fields. Deployments run in
+          <strong>scheduled off-peak windows with pre-tested rollback and post-deployment validation</strong>,
+          delivering without downtime while <strong>meeting agreed SLA commitments</strong>, followed by
+          <strong>deployment support</strong> for QA, UAT, and business teams until every module is signed off.
+        </p>
+        <p>
+          Outside the day job I take products all the way to release on my own — an
+          <strong>offline-first ASP.NET Core 8</strong> order platform with a Firestore sync relay for a fireworks
+          business, a <strong>Flutter</strong> household finance app running on Android, iOS, and Web from one
+          codebase, and an offline image compressor shipped as both a PWA and a signed Android APK.
+        </p>
+        <p>
+          I was an early adopter of <strong>AI-assisted development</strong> on my team, introducing Claude Code
+          and ChatGPT into our feature and code review workflow. Currently deepening Azure, Docker, and
+          microservices.
+        </p>
+      </div>
+
+      <dl class="facts reveal">
+        <div class="fact"><dt>Location</dt><dd>Namakkal, Tamil Nadu</dd></div>
+        <div class="fact"><dt>Experience</dt><dd>5 Years</dd></div>
+        <div class="fact"><dt>Current Role</dt><dd>Senior Dev &amp; Tech Lead</dd></div>
+        <div class="fact"><dt>Company</dt><dd>Spark IT Tech, Tiruppur</dd></div>
+        <div class="fact"><dt>Core Stack</dt><dd>React · ASP.NET Core · C# · SQL Server</dd></div>
+        <div class="fact"><dt>Also Builds</dt><dd>Flutter · PWA · Firestore</dd></div>
+        <div class="fact"><dt>Domain</dt><dd>Supply Chain, Procurement &amp; Vendor</dd></div>
+        <div class="fact"><dt>Languages</dt><dd>Tamil · English</dd></div>
+        <div class="fact"><dt>Status</dt><dd>Open to opportunities</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Skills</div>
+      <h2>Technical toolkit</h2>
+      <p>The stack I use to build enterprise applications end to end — React front ends, secured .NET APIs, and the SQL Server and release work behind them.</p>
+    </div>
+
+    <div class="skills">
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+          <h3>Frontend — Modern</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">JavaScript (ES6+)</span>
+          <span class="tag">Component-Based UI</span><span class="tag">Reusable Components</span>
+          <span class="tag">Forms &amp; Client-Side Validation</span><span class="tag">State Handling</span>
+          <span class="tag">REST / JSON Integration</span><span class="tag">JWT &amp; Role-Based Routing</span>
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap 5</span>
+          <span class="tag">Responsive Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+          <h3>Frontend — Server-Side</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">ASP.NET MVC Razor Views</span><span class="tag">jQuery</span><span class="tag">AJAX</span>
+          <span class="tag">DevExtreme</span><span class="tag">Dynamic UI Grids</span>
+          <span class="tag">Cascading Dropdowns</span><span class="tag">Modal Forms</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+          <h3>Backend</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">C#</span><span class="tag">.NET 8 / ASP.NET Core 8</span>
+          <span class="tag">ASP.NET MVC 5</span><span class="tag">.NET Framework 4.8</span>
+          <span class="tag">RESTful Web APIs</span><span class="tag">API Versioning</span>
+          <span class="tag">Entity Framework Core 8</span><span class="tag">Entity Framework 6</span>
+          <span class="tag">LINQ</span><span class="tag">ADO.NET</span>
+          <span class="tag">Dependency Injection</span><span class="tag">SOLID</span><span class="tag">Design Patterns</span>
+          <span class="tag">ASP.NET Identity</span><span class="tag">OWIN</span>
+          <span class="tag">Swagger / OpenAPI</span><span class="tag">Postman</span><span class="tag">Hangfire</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span>
+          <h3>Database</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">SQL Server</span><span class="tag">T-SQL</span><span class="tag">Stored Procedures</span>
+          <span class="tag">Views &amp; Triggers</span><span class="tag">Query Optimisation</span>
+          <span class="tag">Indexing Strategies</span><span class="tag">Execution Plans</span>
+          <span class="tag">EF Core Code-First Migrations</span><span class="tag">Schema &amp; Data Migration Scripts</span>
+          <span class="tag">Rollback Scripts</span><span class="tag">Backup &amp; Restore</span>
+          <span class="tag">Point-in-Time Recovery</span>
+          <span class="tag">Environment Refresh with Data Masking</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.7l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.7l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></span>
+          <h3>Cloud, DevOps &amp; Release</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">Git</span><span class="tag">TFS</span><span class="tag">Azure DevOps</span>
+          <span class="tag">IIS Administration</span><span class="tag">Site Hosting</span>
+          <span class="tag">Application Pools</span><span class="tag">SSL / TLS Binding</span>
+          <span class="tag">DNS &amp; Host Headers</span><span class="tag">URL Rewrite</span>
+          <span class="tag">Windows Server</span><span class="tag">Release &amp; Deployment Management</span>
+          <span class="tag">Pre-Tested Rollback</span><span class="tag">Off-Peak Release Windows</span>
+          <span class="tag">Post-Deployment Validation</span><span class="tag">Deployment Support</span>
+          <span class="tag">ELMAH</span><span class="tag">log4net</span>
+          <span class="tag">Google Cloud Firestore</span><span class="tag">Firebase</span>
+          <span class="tag">GitHub Pages Hosting</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <h3>Security</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">OWASP Top 10</span><span class="tag">JWT Auth</span><span class="tag">RBAC</span>
+          <span class="tag">XSS Prevention</span><span class="tag">CSRF Protection</span><span class="tag">CSP Headers</span>
+          <span class="tag">Input Validation</span><span class="tag">Parameterised Queries</span>
+          <span class="tag">DOMPurify</span><span class="tag">Secure File Upload</span>
+          <span class="tag">PBKDF2</span><span class="tag">AES-256</span>
+          <span class="tag">TLS 1.2+</span><span class="tag">Path Traversal &amp; IDOR Prevention</span>
+          <span class="tag">Secure Configuration Management</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg></span>
+          <h3>Integrations &amp; Document Processing</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">SAP Business One Integration</span><span class="tag">RESTful Services</span>
+          <span class="tag">SMTP / Notifications</span><span class="tag">Excel Bulk Pipelines</span>
+          <span class="tag">iTextSharp</span><span class="tag">Ghostscript</span><span class="tag">ClosedXML</span>
+          <span class="tag">Background Job Scheduling</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
+          <h3>Reporting &amp; BI</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">DevExpress</span><span class="tag">DevExtreme</span><span class="tag">Crystal Reports</span>
+          <span class="tag">KPI Dashboards</span><span class="tag">Drill-Down Visualisation</span>
+          <span class="tag">SQL Aggregation</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span>
+          <h3>Mobile &amp; Cross-Platform</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Capacitor 6</span>
+          <span class="tag">Android APK Build &amp; Signing</span><span class="tag">Offline-First Architecture</span>
+          <span class="tag">Local Notifications</span><span class="tag">Google Sign-In</span>
+          <span class="tag">Google Drive API</span><span class="tag">PWA</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
+          <h3>Practices &amp; Leadership</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">Agile / Scrum</span><span class="tag">Sprint Planning</span>
+          <span class="tag">Task Breakdown</span><span class="tag">Estimation</span>
+          <span class="tag">Design Discussions</span><span class="tag">Code Review</span>
+          <span class="tag">Clean Code</span><span class="tag">Secure Coding Standards</span>
+          <span class="tag">Requirement Analysis</span><span class="tag">Technical Mentoring</span>
+          <span class="tag">Stakeholder Coordination</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-head">
+          <span class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+          <h3>AI-Assisted Development</h3>
+        </div>
+        <div class="tags">
+          <span class="tag">Claude Code</span><span class="tag">ChatGPT</span>
+          <span class="tag">Prompt Engineering</span><span class="tag">AI-Assisted Code Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Experience</div>
+      <h2>Career journey</h2>
+      <p>Five years at Spark IT Tech — from building modules to leading the platform's technical direction.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-top">
+          <h3>Senior .NET Full-Stack Developer &amp; Technical Lead</h3>
+          <span class="tl-date">Apr 2023 – Present</span>
+        </div>
+        <p class="tl-org"><b>Spark IT Tech</b> · Tiruppur, Tamil Nadu</p>
+        <ul class="tl-list">
+          <li>Build and maintain <b>enterprise web applications</b> end to end on <b>.NET 8 / ASP.NET Core, ASP.NET MVC 5, and C#</b> across procurement, vendor, and supply chain modules.</li>
+          <li>Develop the <b>React.js</b> front end for the Vendor Portal — reusable form, grid, and modal components with client-side validation and state handling.</li>
+          <li><b>Integrate React applications with RESTful .NET APIs</b> — JWT-secured endpoints documented in Swagger, with consistent validation and error handling on both sides.</li>
+          <li>Build responsive server-rendered screens with <b>JavaScript, jQuery, AJAX, and Bootstrap</b> across the established MVC modules.</li>
+          <li>Design <b>SQL Server</b> schemas and tune <b>T-SQL stored procedures and indexes</b> for high-volume transactional modules.</li>
+          <li>Act as <b>Technical Lead</b> — task breakdown, estimation, design discussions, architecture decisions, <b>code reviews</b>, and release planning across multiple concurrent modules.</li>
+          <li>Directed a four-phase enterprise security remediation programme that identified and resolved <b>500+ security issues/findings</b> spanning XSS, SQL Injection, CSRF, and unsafe file upload paths on a live production system.</li>
+          <li>Established secure coding standards for the team and run recurring code reviews and security audits to enforce them across all new development.</li>
+          <li>Mentor junior developers on .NET and <b>React</b> practice, defensive coding, SQL performance tuning, and AI-assisted development workflows.</li>
+          <li>Introduced AI-assisted development using Claude Code and ChatGPT across the engineering team, improving feature turnaround and code review depth.</li>
+          <li>Support releases with <b>EF Core migrations</b>, schema, data, and rollback scripts, and production-to-UAT refreshes using <b>data masking and validation</b> of sensitive fields.</li>
+          <li>Deploy IIS releases in <b>scheduled off-peak windows with pre-tested rollback scripts</b> and post-deployment smoke validation, delivering without downtime while <b>meeting agreed SLA commitments</b>.</li>
+          <li>Host and administer applications on IIS — site creation, application pools, SSL/TLS certificate binding, host header and DNS mapping, URL rewrite rules, and environment-specific configuration hardening.</li>
+          <li>Act as the <b>deployment support</b> contact for QA, UAT, and business teams — resolving environment issues, verifying release readiness, and executing documented rollback plans.</li>
+          <li>Work directly with business stakeholders to translate procurement, finance, and inventory requirements into scalable technical designs and delivery timelines.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-top">
+          <h3>.NET Full-Stack Developer</h3>
+          <span class="tl-date">Aug 2021 – Mar 2023</span>
+        </div>
+        <p class="tl-org"><b>Spark IT Tech</b> · Tiruppur, Tamil Nadu</p>
+        <ul class="tl-list">
+          <li>Built and shipped core procurement and inventory management modules on <b>ASP.NET Core and ASP.NET MVC 5</b>, supporting high-volume daily transactions on the enterprise SCM platform.</li>
+          <li>Developed <b>RESTful Web APIs</b> with JWT authentication, API versioning, and Swagger documentation consumed by internal web and integration clients.</li>
+          <li>Built frontend screens with <b>JavaScript, jQuery, and Bootstrap</b>, using AJAX to load and submit data without page reloads.</li>
+          <li>Optimised complex T-SQL stored procedures and indexing strategies to achieve <b>sub-second response times</b> under peak transactional load.</li>
+          <li>Designed Excel bulk upload modules with multi-layer validation, tooltip-driven templates, and SAP synchronisation override logic.</li>
+          <li>Configured Hangfire recurring jobs with retry policies, queue management, and monitoring dashboards to move long-running workflows off the request path.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-top">
+          <h3>Freelance Full-Stack Developer</h3>
+          <span class="tl-date">Sep 2025 – Present</span>
+        </div>
+        <p class="tl-org"><b>Self-Employed</b> · Remote</p>
+        <ul class="tl-list">
+          <li>Deliver client and product work end to end — requirement gathering, architecture, development, Android packaging, and deployment.</li>
+          <li>Built an offline-first order and inventory platform on ASP.NET Core 8 with a Firestore sync relay, letting field staff capture orders with no connectivity.</li>
+          <li>Ship cross-platform applications from single codebases using Flutter and Capacitor, published as installable PWAs and signed Android APKs.</li>
+          <li>Own the full release path — signed Android builds, Firestore security rules, and static site hosting on GitHub Pages with custom domain, HTTPS, SEO metadata, and PWA manifests.</li>
+          <li>Provide post-release support directly to clients — deployment assistance, database backup and restoration, issue follow-up, and version updates after go-live.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Projects</div>
+      <h2>Selected work</h2>
+      <p>Enterprise systems I built, secured, and shipped into daily production use — React front ends, .NET APIs, and the data layer behind them.</p>
+    </div>
+
+    <div class="projects">
+      <article class="proj feature reveal">
+        <div class="proj-top">
+          <h3>Vendor Portal — React + .NET Self-Service Platform</h3>
+          <span class="proj-role">Full Stack (React + .NET)</span>
+        </div>
+        <p class="proj-sub">Enterprise Internal Platform · Vendor Onboarding, Procurement &amp; Collaboration</p>
+        <ul class="proj-list">
+          <li>Built the vendor-facing UI in <b>React.js with TypeScript</b> — a <b>reusable component set</b> of forms, grids, modals, and validation shared across registration, onboarding, and approval screens.</li>
+          <li>Implemented <b>multi-step vendor registration and onboarding forms</b> in React with client-side validation, file upload, and inline error handling mapped to the server-side validation rules.</li>
+          <li><b>Integrated the React front end with RESTful .NET APIs</b> using JWT authentication and role-based routing, so vendors, buyers, and approvers each see only their permitted screens.</li>
+          <li>Delivered reporting screens for purchase orders, invoices, and vendor activity with <b>server-side paging and filtering</b> for large data sets.</li>
+          <li>Streamlined communication, procurement, and collaboration with suppliers through a single <b>self-service portal</b>, replacing email-driven follow-ups.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">JavaScript (ES6+)</span>
+          <span class="tag">Bootstrap</span><span class="tag">C#</span><span class="tag">ASP.NET Core</span>
+          <span class="tag">RESTful Web APIs</span><span class="tag">Entity Framework Core</span>
+          <span class="tag">SQL Server</span><span class="tag">ASP.NET Identity</span><span class="tag">JWT</span>
+        </div>
+      </article>
+
+      <article class="proj feature reveal">
+        <div class="proj-top">
+          <h3>Supply Chain &amp; Procurement Management System</h3>
+          <span class="proj-role">Lead / Senior Developer</span>
+        </div>
+        <p class="proj-sub">Enterprise Internal Platform · Supply Chain &amp; Procurement · 2021 – Present</p>
+        <ul class="proj-list">
+          <li>Architected and delivered a multi-module platform covering procurement, inventory, and supply chain operations for <b>high-volume daily transactions</b>.</li>
+          <li>Designed the RESTful API layer with JWT authentication, versioning, and Swagger documentation for internal and integration consumers.</li>
+          <li>Enforced consistent 150-character validation rules across Razor views, APIs, service layers, and Excel workflows — shipped with <b>zero production defects</b>.</li>
+          <li>Tuned stored procedures, query plans, and indexes to sustain <b>sub-second response times</b> as transaction volume scaled.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">C#</span><span class="tag">ASP.NET MVC</span><span class="tag">.NET Core</span>
+          <span class="tag">Web API</span><span class="tag">Entity Framework</span><span class="tag">SQL Server</span>
+          <span class="tag">Hangfire</span><span class="tag">JWT</span><span class="tag">IIS</span>
+          <span class="tag">Azure DevOps</span><span class="tag">Git</span>
+        </div>
+      </article>
+
+      <article class="proj feature reveal">
+        <div class="proj-top">
+          <h3>Smart Documents — AP Invoice &amp; Document Management Platform</h3>
+          <span class="proj-role">Full Stack</span>
+        </div>
+        <p class="proj-sub">Enterprise Internal Platform · AP Invoicing, Document Management &amp; Workflow · SAP B1 Integrated</p>
+        <ul class="proj-list">
+          <li>Built a <b>metadata-driven document type engine</b> where grid columns, captions, formatting, summary aggregations, hierarchical filters, and role-based access are configured as data — onboarding new document types without code changes.</li>
+          <li>Implemented <b>Active/Archive data tiering</b> with runtime database switching, resolving filter master data from the live database while serving historical reads from the archive.</li>
+          <li>Delivered <b>SAP Business One integration</b> across invoice and vendor master data, including a token-authenticated API letting SAP attach documents directly against a document key.</li>
+          <li>Engineered a secure document viewer using <b>AES-encrypted URL parameters</b> and an external-site allow list, so links could be shared across systems without exposing internal keys.</li>
+          <li>Designed a compressed per-session result cache serving DevExtreme paging and sorting from memory instead of re-querying SQL, with stored-procedure aggregation for dashboard counts.</li>
+          <li>Built a full-request audit subsystem capturing user, action, client, geolocation, payload sizes, and response timings by wrapping the response stream in a global action filter.</li>
+          <li>Implemented server-side PDF compression on an iTextSharp and Ghostscript subprocess pipeline with configurable quality thresholds and correct process, stream, and handle management.</li>
+          <li>Delivered a <b>65-issue code review remediation</b> across 37+ files — 13 critical, 17 high, 35 medium — resolving 29 security, 13 performance, and 12 resource-management defects to a clean zero-error build, and eliminating N+1 patterns for a <b>~50% reduction in queries</b>.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">C#</span><span class="tag">.NET Framework 4.8</span><span class="tag">ASP.NET MVC 5</span>
+          <span class="tag">ASP.NET Web API</span><span class="tag">Razor</span>
+          <span class="tag">Entity Framework 6 (EDMX)</span><span class="tag">ADO.NET</span>
+          <span class="tag">SQL Server</span><span class="tag">Stored Procedures</span>
+          <span class="tag">ASP.NET Identity</span><span class="tag">OWIN / Katana</span>
+          <span class="tag">DevExtreme</span><span class="tag">iTextSharp</span><span class="tag">Ghostscript.NET</span>
+          <span class="tag">ELMAH</span><span class="tag">log4net</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>Enterprise Security Remediation Initiative</h3>
+          <span class="proj-role">Security Lead</span>
+        </div>
+        <p class="proj-sub">4-Phase Programme · Application Security · 2023 – 2024</p>
+        <ul class="proj-list">
+          <li>Led a four-phase remediation programme across a live enterprise SCM platform, resolving <b>500+ security issues/findings</b> without disrupting business operations.</li>
+          <li>Applied DOMPurify sanitisation, parameterised queries, and Content Security Policy headers to close XSS and SQL Injection attack surfaces.</li>
+          <li>Implemented RBAC, XSS prevention filters, CSRF protection, and centralised input validation across every application entry point.</li>
+          <li>Ran code reviews and security audits, then codified the resulting secure coding standards for ongoing team use.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">ASP.NET Core</span><span class="tag">C#</span><span class="tag">SQL Server</span>
+          <span class="tag">DOMPurify</span><span class="tag">CSP Headers</span><span class="tag">OWASP Top 10</span>
+          <span class="tag">JWT</span><span class="tag">RBAC</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>SAP Synchronisation &amp; Integration Services</h3>
+          <span class="proj-role">Owner</span>
+        </div>
+        <p class="proj-sub">Integration Layer · Procurement &amp; Finance Data Exchange</p>
+        <ul class="proj-list">
+          <li>Built <b>SAP Business One</b> synchronisation services <b>from scratch</b> using Hangfire for near real-time procurement and finance data exchange.</li>
+          <li>Eliminated manual cross-team reconciliation by automating bidirectional master and transactional data flows.</li>
+          <li>Added retry policies, failure alerting, and queue monitoring so integration failures surface and self-recover without manual intervention.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">Web API</span>
+          <span class="tag">Hangfire</span><span class="tag">SAP Business One Integration</span>
+          <span class="tag">SQL Server</span><span class="tag">SMTP</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>Release Management, Hosting &amp; Production Support</h3>
+          <span class="proj-role">Release / Deployment Engineer</span>
+        </div>
+        <p class="proj-sub">Operations · IIS Hosting, Deployments, Database Restoration &amp; Follow-Up</p>
+        <ul class="proj-list">
+          <li>Own the release pipeline for procurement and finance modules — build packaging, deployment checklists, release notes, scheduled production windows, and post-deployment smoke verification.</li>
+          <li>Run structured <b>post-release follow-up</b> with business users after every deployment, tracking reported issues to closure and confirming stability before formal sign-off.</li>
+          <li>Host and configure applications on IIS — site creation, application pools, SSL/TLS binding, HTTPS enforcement, host headers, DNS mapping, and URL rewrite across production and lower environments.</li>
+          <li>Handle <b>EF Core migrations</b>, schema and data migration scripts with matching rollback scripts, and SQL Server <b>backup and restoration</b> — full and point-in-time restores, production-to-UAT refreshes with <b>data masking and validation</b>, and login and permission remapping.</li>
+          <li>Serve as the <b>deployment support</b> contact for QA, UAT, and client teams, resolving environment issues and executing documented rollback plans when required.</li>
+          <li>Delivered releases without downtime while <b>meeting agreed SLA commitments</b> — every deployment rehearsed in a lower environment first, then run in a <b>scheduled off-peak window with pre-tested rollback</b> and post-deployment validation.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">IIS</span><span class="tag">Windows Server</span><span class="tag">SQL Server</span>
+          <span class="tag">Azure DevOps</span><span class="tag">Git</span><span class="tag">SSL / TLS</span>
+          <span class="tag">Hangfire</span><span class="tag">ELMAH</span><span class="tag">log4net</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>BI Reporting &amp; KPI Dashboard</h3>
+          <span class="proj-role">Full Stack</span>
+        </div>
+        <p class="proj-sub">Business Intelligence · Oct 2023 – Jan 2024</p>
+        <ul class="proj-list">
+          <li>Engineered real-time BI dashboards and KPI reporting modules using DevExpress controls and advanced SQL aggregation queries.</li>
+          <li>Built Crystal Reports integrations for both scheduled and on-demand executive reporting.</li>
+          <li>Designed drill-down visualisation layers giving stakeholders actionable insight into procurement and supply chain KPIs.</li>
+          <li>Used Claude Code and ChatGPT to compress feature development and code review cycles.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">C#</span><span class="tag">ASP.NET MVC</span><span class="tag">SQL Server</span>
+          <span class="tag">DevExpress</span><span class="tag">Crystal Reports</span>
+          <span class="tag">JavaScript</span><span class="tag">jQuery</span><span class="tag">Bootstrap</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>Excel Bulk Upload &amp; Validation Framework</h3>
+          <span class="proj-role">Designer</span>
+        </div>
+        <p class="proj-sub">Reusable Platform Component · Master Data Onboarding</p>
+        <ul class="proj-list">
+          <li>Designed a reusable bulk upload framework with template generation, tooltip comments, and row-level validation feedback.</li>
+          <li>Implemented SAP synchronisation override logic to reconcile bulk-loaded records against master data safely.</li>
+          <li>Cut operational onboarding effort for high-volume master data entry across procurement modules.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">C#</span><span class="tag">ASP.NET MVC</span><span class="tag">.NET Core</span>
+          <span class="tag">SQL Server</span><span class="tag">SAP Business One Integration</span><span class="tag">JavaScript</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FREELANCE ================= -->
+<section id="freelance" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Freelance</div>
+      <h2>Products I built end to end</h2>
+      <p>Client and personal products taken from requirement to signed Android build — architecture, code, and release all mine.</p>
+    </div>
+
+    <div class="projects">
+      <article class="proj feature reveal">
+        <div class="proj-top">
+          <h3>E-Palace Crackers — Order &amp; Inventory Management Platform</h3>
+          <span class="proj-role">Sole Developer</span>
+        </div>
+        <p class="proj-sub">Client Project · Sivakasi Fireworks Business · Sep 2025 – Jul 2026</p>
+        <ul class="proj-list">
+          <li>Built a complete order management platform covering customers, item and stock master, order headers and details, order tracking, follow-ups, and payment modes.</li>
+          <li>Designed an <b>offline-first sync architecture</b> keeping SQL Server as the master and Firestore purely as a relay, so field staff capture orders on an Android app with no connectivity and queue them on-device.</li>
+          <li>Made synchronisation <b>idempotent</b> using device-generated source IDs — a re-imported order is skipped, while invoice numbers, stock adjustments, and payment status still update correctly.</li>
+          <li>Abstracted the sync store behind an interface with a local file backend, so the whole system develops and tests without a cloud account.</li>
+          <li>Delivered PDF invoice generation, Excel export, reporting dashboards, and email notifications — plus a separate SEO-ready static marketing site with PWA manifest and sitemap.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">ASP.NET Core 8 MVC</span><span class="tag">C#</span><span class="tag">EF Core 8</span>
+          <span class="tag">SQL Server</span><span class="tag">ASP.NET Core Identity</span>
+          <span class="tag">Google Cloud Firestore</span><span class="tag">ClosedXML</span>
+          <span class="tag">iTextSharp</span><span class="tag">PdfSharp</span><span class="tag">Android</span>
+        </div>
+        <div class="proj-links">
+          <a class="plink live" href="https://nandhakumarmnk.github.io/Epalace_Info/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.8 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg>
+            Live Site
+          </a>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>Family Finance</h3>
+          <span class="proj-role">Sole Developer</span>
+        </div>
+        <p class="proj-sub">Cross-Platform Household Finance Manager · Jun – Jul 2026</p>
+        <ul class="proj-list">
+          <li>Built a Flutter app targeting <b>Android, iOS, and Web from one codebase</b> — salary, categorised expenses, EMIs, budgets, reminders, and reports.</li>
+          <li>Implemented a shared <b>family common wallet</b> with head and member roles, family-code invitations, and per-member spend analytics.</li>
+          <li>Built a dual storage backend — Excel workbooks in Google Drive that auto-switch to Firestore — so it works before any cloud setup and scales once configured.</li>
+          <li>Solved multi-device write conflicts by merging the latest remote copy before every save, tracking removals in a dedicated sheet so deletions propagate.</li>
+          <li>Added EMI payoff projection, per-category overspend warnings, and recurring reminders that fire as real device notifications even when the app is closed.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Firestore</span>
+          <span class="tag">Google Drive API</span><span class="tag">Google Sign-In</span>
+          <span class="tag">Local Notifications</span><span class="tag">Security Rules</span>
+        </div>
+        <div class="proj-links">
+          <a class="plink" href="https://github.com/Nandhakumarmnk/family-finance" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0022 12 10 10 0 0012 2z"/></svg>
+            Source
+          </a>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <h3>PixelKeep</h3>
+          <span class="proj-role">Sole Developer</span>
+        </div>
+        <p class="proj-sub">Offline Image &amp; PDF Compressor · PWA + Android · Jul 2026</p>
+        <ul class="proj-list">
+          <li>Hits an <b>exact target file size</b> by binary-searching encoder quality, landing just under the target at the highest achievable quality.</li>
+          <li>Preserves original resolution by default so no pixels are dropped — downscale kicks in only when a target is unreachable at full size.</li>
+          <li>Converts across JPG, PNG, WebP, PDF, and DOCX, assembling the OOXML Word package entirely in-browser with JSZip.</li>
+          <li>Ships one codebase as both an installable PWA and a signed Android APK via Capacitor, with native filesystem save and share.</li>
+          <li>Runs <b>100% offline</b> — no network calls, no uploads, no tracking. Files never leave the device.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">Capacitor 6</span><span class="tag">Canvas API</span>
+          <span class="tag">pdf.js</span><span class="tag">jsPDF</span><span class="tag">JSZip</span>
+          <span class="tag">PWA</span><span class="tag">Android</span>
+        </div>
+        <div class="proj-links">
+          <a class="plink live" href="https://nandhakumarmnk.github.io/pixelkeep-compressor/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.8 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg>
+            Try It Live
+          </a>
+          <a class="plink" href="https://github.com/Nandhakumarmnk/pixelkeep-compressor" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0022 12 10 10 0 0012 2z"/></svg>
+            Source
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Achievements</div>
+      <h2>Impact delivered</h2>
+    </div>
+
+    <div class="achv">
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Vendor Portal Front End in React.js</h3>
+        <p>Replaced email-driven vendor follow-ups with a self-service portal used by suppliers, buyers, and approvers — React UI integrated with JWT-secured .NET APIs.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <h3>Reusable React + TypeScript Component Set</h3>
+        <p>Forms, grids, modals, and validation built once and shared across the portal — cutting build time for new vendor screens and keeping UI behaviour consistent.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>500+ Security Issues Resolved</h3>
+        <p>Hardened a live enterprise SCM platform against OWASP Top 10 threats across a four-phase remediation programme.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg></div>
+        <h3>SAP Business One Integration Built From Scratch</h3>
+        <p>Removed recurring cross-team reconciliation effort and enabled near real-time procurement and finance synchronisation.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></div>
+        <h3>Sub-Second Query Performance</h3>
+        <p>Delivered measurable gains on high-volume transactional modules through stored procedure and indexing optimisation.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Zero-Downtime Deployments</h3>
+        <p>Production releases for procurement and finance systems run in scheduled off-peak windows with pre-tested rollback and post-deployment validation, meeting agreed SLA commitments.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3>Hosting, Migrations &amp; Release Delivery</h3>
+        <p>IIS site hosting and SSL configuration, database backup and point-in-time restoration, environment refreshes, deployment support, and post-release follow-up through to business sign-off.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/></svg></div>
+        <h3>AI-Assisted Workflows Introduced</h3>
+        <p>Brought Claude Code and ChatGPT into team practice, improving delivery speed and code review quality.</p>
+      </div>
+
+      <div class="achv-card reveal">
+        <div class="achv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9"/></svg></div>
+        <h3>Team Standards &amp; Mentoring</h3>
+        <p>Authored the secure coding standards the team reviews against and mentor developers on .NET and SQL practice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Education</div>
+      <h2>Academic background</h2>
+    </div>
+
+    <div class="edu reveal">
+      <span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span>
+      <div class="edu-body">
+        <h3>Bachelor of Engineering — Electrical &amp; Electronics Engineering</h3>
+        <p class="inst">Karpagam College of Engineering</p>
+        <div class="edu-meta">
+          <span class="pill">2016 – 2020</span>
+          <span class="pill">CGPA 7.5 / 10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <h2>Let's build something solid</h2>
+      <p>Open to senior and lead .NET full-stack roles. Happy to talk React and .NET API design, architecture, security, SAP integration, or SQL performance.</p>
+
+      <div class="contact-links">
+        <a class="clink" href="mailto:nandhakumarmurugesan45@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+          nandhakumarmurugesan45@gmail.com
+        </a>
+        <a class="clink" href="tel:+918072127298">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+          +91 80721-27298
+        </a>
+        <a class="clink" href="https://linkedin.com/in/nandhakumar-m-dotnet" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 112.5 6 2.5 2.5 0 014.98 3.5zM3 8.98h4V21H3zM9 8.98h3.8v1.64h.06A4.17 4.17 0 0116.6 8.7c4 0 4.75 2.64 4.75 6.07V21h-4v-5.42c0-1.29-.02-2.96-1.8-2.96s-2.08 1.4-2.08 2.86V21H9z"/></svg>
+          linkedin.com/in/nandhakumar-m-dotnet
+        </a>
+        <a class="clink" href="https://github.com/Nandhakumarmnk" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0022 12 10 10 0 0012 2z"/></svg>
+          github.com/Nandhakumarmnk
+        </a>
+        <a class="clink" href="Nandhakumar_M_Resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Résumé
+        </a>
+      </div>
+
+      <div class="avail"><span class="dot"></span> Based in Namakkal, Tamil Nadu · Open to relocation &amp; remote</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="yr">2026</span> Nandhakumar M · Senior .NET Full-Stack Developer · React.js &amp; ASP.NET Core</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Theme ---------- */
+  var root = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem("nk-theme"); } catch(e){}
+  if (saved) {
+    root.setAttribute("data-theme", saved);
+  } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+    root.setAttribute("data-theme", "light");
+  }
+
+  document.getElementById("themeBtn").addEventListener("click", function(){
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("nk-theme", next); } catch(e){}
+  });
+
+  /* ---------- Mobile menu ---------- */
+  var links = document.getElementById("navLinks");
+  document.getElementById("menuBtn").addEventListener("click", function(){
+    links.classList.toggle("open");
+  });
+  links.addEventListener("click", function(e){
+    if (e.target.tagName === "A") links.classList.remove("open");
+  });
+
+  /* ---------- Nav border on scroll ---------- */
+  var nav = document.getElementById("nav");
+  function onScroll(){
+    nav.classList.toggle("scrolled", window.scrollY > 12);
+  }
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- Reveal on scroll ---------- */
+  var reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en, i){
+        if (en.isIntersecting) {
+          setTimeout(function(){ en.target.classList.add("in"); }, i * 70);
+          ro.unobserve(en.target);
+        }
+      });
+    }, { threshold:0.12, rootMargin:"0px 0px -50px 0px" });
+    reveals.forEach(function(el){ ro.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---------- Animated stat counters ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  function runCounter(el){
+    var target = parseInt(el.getAttribute("data-count"), 10);
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (target === 0) { el.textContent = "0" + suffix; return; }
+    var dur = 1300, start = null;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ("IntersectionObserver" in window) {
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { runCounter(en.target); co.unobserve(en.target); }
+      });
+    }, { threshold:0.5 });
+    counters.forEach(function(el){ co.observe(el); });
+  } else {
+    counters.forEach(function(el){
+      el.textContent = el.getAttribute("data-count") + (el.getAttribute("data-suffix") || "");
+    });
+  }
+
+  /* ---------- Active nav link ---------- */
+  var sections = document.querySelectorAll("section[id]");
+  var navAnchors = document.querySelectorAll(".nav-links a");
+  if ("IntersectionObserver" in window) {
+    var so = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var id = en.target.getAttribute("id");
+        navAnchors.forEach(function(a){
+          a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+        });
+      });
+    }, { rootMargin:"-45% 0px -50% 0px" });
+    sections.forEach(function(s){ so.observe(s); });
+  }
+
+  /* ---------- Footer year ---------- */
+  document.getElementById("yr").textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
